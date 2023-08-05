@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Krishna Chaitanya
  */
 @RestController
+@RequestMapping("/hello")
 public class HelloController {
 
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
