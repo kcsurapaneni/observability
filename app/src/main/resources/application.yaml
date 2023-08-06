@@ -5,3 +5,20 @@ server:
   port: 8080
   servlet:
     context-path: /app
+
+# tracings are sampled 10% of time, but can be configured
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  tracing:
+    sampling:
+      probability: 1
+  zipkin:
+    tracing:
+      endpoint: http://${TEMPO_HOST:tempo}:${TEMPO_PORT:9411}/api/v2/spans
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
