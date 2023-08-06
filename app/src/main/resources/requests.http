@@ -1,2 +1,5 @@
 #
-GET http://localhost:8080/app/hello?name={{name}}
+GET http://localhost:8080/app/user?id={{id}}
+
+### Prometheus metrics end-point
+GET http://localhost:8080/app/actuator/prometheus
