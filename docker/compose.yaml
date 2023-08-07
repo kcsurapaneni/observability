@@ -1,0 +1,78 @@
+version: "3"
+services:
+  app:
+    image: app-api
+    container_name: local-app-api
+    environment:
+      DB_HOST: "db"
+      LOKI_HOST: "loki"
+      TEMPO_HOST: "tempo"
+    build:
+      context: ../
+      dockerfile: ./docker/app/Dockerfile
+    ports:
+      - "8080:8080"
+  user:
+    image: user-api
+    container_name: local-user-api
+    environment:
+      DB_HOST: "db"
+      LOKI_HOST: "loki"
+      TEMPO_HOST: "tempo"
+    build:
+      context: ../
+      dockerfile: ./docker/user/Dockerfile
+    ports:
+      - "8081:8081"
+  prometheus:
+    image: prom/prometheus
+    container_name: local-prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  tempo:
+    image: grafana/tempo
+    container_name: local-tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo/tempo.yaml:/etc/tempo.yaml
+      - ./tempo-data:/tmp/tempo
+    ports:
+      - "14268"  # jaeger ingest
+      - "9411:9411" # zipkin
+  loki:
+    image: grafana/loki
+    container_name: local-loki
+    command: [ "-config.file=/etc/loki/local-config.yaml" ]
+    ports:
+      - "3100:3100"
+    environment:
+      - JAEGER_AGENT_HOST=tempo
+      - JAEGER_ENDPOINT=http://tempo:14268/api/traces
+      - JAEGER_SAMPLER_TYPE=const
+      - JAEGER_SAMPLER_PARAM=1
+  grafana:
+    image: grafana/grafana
+    container_name: local-grafana
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    ports:
+      - "3000:3000"
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.23
+    container_name: local-observability-db
+    environment:
+      MYSQL_DATABASE: observability
+      MYSQL_USER: observability_user
+      MYSQL_PASSWORD: observability_password
+      MYSQL_ROOT_PASSWORD: root_observability_password
+    ports:
+      - "${HOST_PORT:-3312}:3306"
+    volumes:
+      - ./db/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
