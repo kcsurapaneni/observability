@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping
-    User getUser(@RequestParam int id) {
+    UserDTO getUser(@RequestParam int id) {
         logger.info("getUser() is called");
         logger.info("calling userService.fetchUser(id)");
         return userService.fetchUser(id);
