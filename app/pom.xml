@@ -50,6 +50,10 @@
             <artifactId>opentelemetry-exporter-zipkin</artifactId>
         </dependency>
 
+        <!--
+        This dependency provides us special logback appender, which sends the data to the console but also
+        to the local Loki instance running. Please check `logback-spring.xml`
+         -->
         <dependency>
             <groupId>com.github.loki4j</groupId>
             <artifactId>loki-logback-appender</artifactId>
