@@ -24,6 +24,9 @@ services:
       dockerfile: ./docker/user/Dockerfile
     ports:
       - "8081:8081"
+    depends_on:
+      db:
+        condition: service_healthy
   prometheus:
     image: prom/prometheus
     container_name: local-prometheus
@@ -39,19 +42,20 @@ services:
       - ./tempo/tempo.yaml:/etc/tempo.yaml
       - ./tempo-data:/tmp/tempo
     ports:
-      - "14268"  # jaeger ingest
+#      - "14268"  # jaeger ingest
       - "9411:9411" # zipkin
+#      - "3200:3200"
   loki:
     image: grafana/loki
     container_name: local-loki
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
     ports:
       - "3100:3100"
-    environment:
-      - JAEGER_AGENT_HOST=tempo
-      - JAEGER_ENDPOINT=http://tempo:14268/api/traces
-      - JAEGER_SAMPLER_TYPE=const
-      - JAEGER_SAMPLER_PARAM=1
+#    environment:
+#      - JAEGER_AGENT_HOST=tempo
+#      - JAEGER_ENDPOINT=http://tempo:14268/api/traces
+#      - JAEGER_SAMPLER_TYPE=const
+#      - JAEGER_SAMPLER_PARAM=1
   grafana:
     image: grafana/grafana
     container_name: local-grafana
@@ -76,3 +80,8 @@ services:
       - "${HOST_PORT:-3312}:3306"
     volumes:
       - ./db/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 5s
+      timeout: 5s
+      retries: 5
