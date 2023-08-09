@@ -40,7 +40,7 @@ services:
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./tempo/tempo.yaml:/etc/tempo.yaml
-      - ./tempo-data:/tmp/tempo
+#      - ./tempo-data:/tmp/tempo
     ports:
 #      - "14268"  # jaeger ingest
       - "9411:9411" # zipkin
