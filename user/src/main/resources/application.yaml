@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:observability}
+    username: ${DB_USER:observability_user}
+    password: ${DB_PASSWORD:observability_password}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+server:
+  port: 8081
+  servlet:
+    context-path: /user
+management:
+  tracing:
+    sampling:
+      probability: 1
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  zipkin:
+    tracing:
+      endpoint: http://${TEMPO_HOST:tempo}:${TEMPO_PORT:9411}/api/v2/spans
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+
+
