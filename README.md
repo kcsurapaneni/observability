@@ -6,7 +6,7 @@
 
 - Docker should be installed
 
-### Running
+### Run
 
 1. Clone the project, open in terminal/command prompt
 2. Move to the [docker](./docker) folder
@@ -19,6 +19,9 @@
 5. Go to Grafana dashboard and click on toggle menu
 
    ![Toggle Menu](./images/Grafana%20Toggle%20Menu.png)
+   
+   ### Loki
+
 6. Select Loki
 
    ![loki](./images/Loki.png)
@@ -31,3 +34,21 @@
 9. Now we can see Logs volume and messages
 
     ![logs volume](./images/Loki%20Log%20Volume%20and%20Messages.png)
+10. Either copy Trace Id from Log messages or by clicking on the message we can Tempo
+
+   ![TraceId Select](./images/Select%20TraceId.png)
+
+   ### Tempo
+
+11. Select Tempo
+
+   ![Tempo](./images/Tempo.png)
+12. Select Query type as TraceQL and copy the Trace Id, click on Run query
+
+   ![TraceQL](./images/TraceQL.png)
+13. Now we can see the Service workflow by each operation and how much it took to perform that operation
+
+   ![Service and Operation](./images/Service%20Operation.png)
+14. We can see the same workflow in Node graph as well
+
+   ![Node graph](./images/Node%20Graph.png)
