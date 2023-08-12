@@ -52,3 +52,12 @@
 14. We can see the same workflow in Node graph as well
 
    ![Node graph](./images/Node%20Graph.png)
+
+   ### Prometheus
+
+15. In same way select Prometheus and Let's check metric of `jvm_memory_used_bytes` of `heap` area
+
+   ![Prometheus](./images/Prometheus.png)
+16. Now we can see the metrics of both the instances `app-api` and `user-api`
+
+   ![Metrics](./images/Prometheus%20Graph%20Table.png)
