@@ -82,3 +82,7 @@ Key aspects of observability include:
 ## OpenTelemetry
 
 OpenTelemetry is an open-source project that aims to standardize and simplify observability in modern software systems. It provides a set of APIs, libraries, agents, and instrumentation to help developers capture and collect telemetry data (metrics, logs, and traces) from their applications and services. OpenTelemetry supports multiple programming languages and frameworks, making it suitable for a wide range of environments.
+
+## Grafana
+
+Grafana is an open-source platform for data visualization, monitoring, and analytics. It is commonly used to create interactive and customizable dashboards that display data from various sources. Grafana supports a wide range of data sources, including time-series databases like Prometheus, relational databases, cloud services, and more. Grafana's strength lies in its ability to create visually appealing and informative dashboards that provide insights into the performance and health of systems.
