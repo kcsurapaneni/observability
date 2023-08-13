@@ -1,5 +1,9 @@
 # Observability
 
+Observability is the ability to understand and monitor the internal state and behavior of a system. It involves collecting data, metrics, logs, traces, and other relevant information to gain insights into how the system is performing, how it's behaving, and what might be causing any issues or anomalies. </p>
+
+Observability helps developers, operators, and other stakeholders to effectively diagnose and troubleshoot problems, optimize performance, and ensure the reliability of their systems.
+
 ## How to run
 
 ### Pre requisite
