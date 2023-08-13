@@ -77,3 +77,8 @@ Key aspects of observability include:
 16. Now we can see the metrics of both the instances `app-api` and `user-api`
 
    ![Metrics](./images/Prometheus%20Graph%20Table.png)
+
+
+## OpenTelemetry
+
+OpenTelemetry is an open-source project that aims to standardize and simplify observability in modern software systems. It provides a set of APIs, libraries, agents, and instrumentation to help developers capture and collect telemetry data (metrics, logs, and traces) from their applications and services. OpenTelemetry supports multiple programming languages and frameworks, making it suitable for a wide range of environments.
