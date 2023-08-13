@@ -86,3 +86,6 @@ OpenTelemetry is an open-source project that aims to standardize and simplify ob
 ## Grafana
 
 Grafana is an open-source platform for data visualization, monitoring, and analytics. It is commonly used to create interactive and customizable dashboards that display data from various sources. Grafana supports a wide range of data sources, including time-series databases like Prometheus, relational databases, cloud services, and more. Grafana's strength lies in its ability to create visually appealing and informative dashboards that provide insights into the performance and health of systems.
+
+## Grafana Loki
+Grafana Loki is a log aggregation and query system. It's designed to handle large volumes of log data and supports efficient querying of logs. Loki is often used to centralize logs from various services, making it easier to analyze and troubleshoot issues.
