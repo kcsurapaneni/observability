@@ -4,6 +4,18 @@ Observability is the ability to understand and monitor the internal state and be
 
 Observability helps developers, operators, and other stakeholders to effectively diagnose and troubleshoot problems, optimize performance, and ensure the reliability of their systems.
 
+Key aspects of observability include:
+
+**Metrics:** Quantitative measurements of various aspects of a system, such as CPU usage, memory consumption, request/response rates, error rates, etc.
+
+**Logs:** Text-based records of events and activities within a system. Logs are useful for understanding the sequence of actions taken by the system and for identifying error messages or anomalies.
+
+**Traces:** Distributed traces show the flow of requests as they move through different components and services in a system. Traces provide insights into the end-to-end journey of a request and help identify bottlenecks or latency issues.
+
+**Events:** Specific occurrences or incidents that are noteworthy, often emitted by the system to indicate certain conditions or transitions.
+
+**Correlation:** The ability to link data across different components, services, and layers of the system to form a coherent understanding of what's happening.
+
 ## How to run
 
 ### Pre requisite
