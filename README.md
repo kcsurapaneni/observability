@@ -16,65 +16,85 @@ Key aspects of observability include:
 
 **Correlation:** The ability to link data across different components, services, and layers of the system to form a coherent understanding of what's happening.
 
-## How to run
+## Running the Application with Docker
 
-### Pre requisite
+### Prerequisites
 
-- Docker should be installed
+- Ensure that Docker is installed on your system.
 
 ### Run
 
-1. Clone the project, open in terminal/command prompt
-2. Move to the [docker](./docker) folder
-3. Run `docker compose up -d` command
-   1. [app-api](./app) will be running on http://localhost:8080
-   2. [user-api](./user) is running on http://localhost:8081
-   3. DB connection is also exposed in `3312` port, please refer [docker compose](./docker/compose.yaml) file
-   4. Grafana is running on http://localhost:3000
-4. Hit `app-api` by calling http://localhost:8080/app/user?id=1 in browser
-5. Go to Grafana dashboard and click on toggle menu
+1. Clone this project repository and navigate to it using your terminal or command prompt.
+
+2. Move to the [docker](./docker) folder within the project directory.
+
+3. Run the following command to start the Docker containers:
+   ```
+   docker-compose up -d
+   ```
+4. Once the containers are up and running, you can access the different components of the application through the following URLs:
+
+   1. The [app-api](./app) can be accessed at: http://localhost:8080
+   
+   2. The [user-api](./user) is available at: http://localhost:8081
+   
+   3. The database connection is exposed on port 3312 (refer to the [docker compose](./docker/compose.yaml) file for details).
+   
+   4. Grafana, the monitoring tool, can be accessed at: http://localhost:3000
+   
+5. To interact with the `app-api`, you can make requests via your browser. For example, you can hit the following URL to retrieve user information with the ID 1
+   ```
+   http://localhost:8080/app/user?id=1
+   ```
+   Feel free to explore and interact with the various components of the application using the provided URLs.
 
    ![Toggle Menu](./images/Grafana%20Toggle%20Menu.png)
-   
-   ### Loki
 
-6. Select Loki
+   ## Exploring Logs and Metrics with Loki, Tempo, and Prometheus
+
+   To effectively analyze and visualize logs and metrics from your application, follow these steps
+
+   ### Loki Setup
+
+6. Navigate to the Loki section.
 
    ![loki](./images/Loki.png)
-7. We have to select label filters, which were added as part of [logback-spring.xml](./app/src/main/resources/logback-spring.xml) file
+7. **Applying Label Filters:** Utilize the label filters that have been incorporated into the [logback-spring.xml](./app/src/main/resources/logback-spring.xml) file.
 
     ![loki filter](./images/Loki%20Label%20Filters.png)
-8. After selecting Label filters, click on Run query
+8. **Executing Queries:** After configuring the label filters, proceed to execute your desired query.
 
     ![run query](./images/Loki%20Run%20Query.png)
-9. Now we can see Logs volume and messages
+9. **Viewing Logs Volume and Messages:** Observe the logs volume and the corresponding messages.
 
     ![logs volume](./images/Loki%20Log%20Volume%20and%20Messages.png)
-10. Either copy Trace Id from Log messages or by clicking on the message we can Tempo
+
+   ### Tempo Integration
+
+10. Either copy Trace ID from Log messages or by clicking on the message we can go to Tempo.
 
    ![TraceId Select](./images/Select%20TraceId.png)
 
-   ### Tempo
-
-11. Select Tempo
+11. **Selecting Tempo:** Switch over to the Tempo integration.
 
    ![Tempo](./images/Tempo.png)
-12. Select Query type as TraceQL and copy the Trace Id, click on Run query
+12. **Using TraceQL and Running the Trace Query:** Choose the TraceQL query type, copy the Trace Id from the log messages and execute the query with the copied Trace Id.
 
    ![TraceQL](./images/TraceQL.png)
-13. Now we can see the Service workflow by each operation and how much it took to perform that operation
+13. **Analyzing Service Workflow:** Explore the service workflow, detailing the duration of each operation.
 
    ![Service and Operation](./images/Service%20Operation.png)
-14. We can see the same workflow in Node graph as well
+14. **Node Graph Visualization:** Visualize the same workflow using the Node graph representation.
 
    ![Node graph](./images/Node%20Graph.png)
 
-   ### Prometheus
+   ### Prometheus Integration
 
-15. In same way select Prometheus and Let's check metric of `jvm_memory_used_bytes` of `heap` area
+15. **Accessing Prometheus:** Proceed to the Prometheus integration.
+16. **Metric Exploration:** Select and investigate the metrics of interest. For instance, `jvm_memory_used_bytes` of the `heap` area.
 
    ![Prometheus](./images/Prometheus.png)
-16. Now we can see the metrics of both the instances `app-api` and `user-api`
+17. **Metrics for Multiple Instances:** Observe the metrics for both instances, `app-api` and `user-api`.
 
    ![Metrics](./images/Prometheus%20Graph%20Table.png)
 
@@ -88,4 +108,5 @@ OpenTelemetry is an open-source project that aims to standardize and simplify ob
 Grafana is an open-source platform for data visualization, monitoring, and analytics. It is commonly used to create interactive and customizable dashboards that display data from various sources. Grafana supports a wide range of data sources, including time-series databases like Prometheus, relational databases, cloud services, and more. Grafana's strength lies in its ability to create visually appealing and informative dashboards that provide insights into the performance and health of systems.
 
 ## Grafana Loki
+
 Grafana Loki is a log aggregation and query system. It's designed to handle large volumes of log data and supports efficient querying of logs. Loki is often used to centralize logs from various services, making it easier to analyze and troubleshoot issues.
