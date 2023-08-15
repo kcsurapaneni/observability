@@ -110,3 +110,13 @@ Grafana is an open-source platform for data visualization, monitoring, and analy
 ## Grafana Loki
 
 Grafana Loki is a log aggregation and query system. It's designed to handle large volumes of log data and supports efficient querying of logs. Loki is often used to centralize logs from various services, making it easier to analyze and troubleshoot issues.
+
+> Grafana Loki, Grafana Tempo, OpenTelemetry, Prometheus, and Grafana form a powerful combination of observability solutions that work together to provide comprehensive monitoring, logging, tracing, and visualization capabilities in modern software systems.
+
+### OpenTelemetry and Grafana
+
+OpenTelemetry's collected data can be sent to various backends, including Grafana Loki for logs and Grafana Tempo for traces. Grafana can then be used to visualize these logs and traces alongside metrics data, providing a holistic view of application behavior.
+
+### Prometheus and Grafana
+
+Prometheus metrics data can be visualized and analyzed in Grafana dashboards. Grafana can query Prometheus using PromQL to create visualizations that help monitor system performance.
