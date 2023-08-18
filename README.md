@@ -30,7 +30,7 @@ Key aspects of observability include:
 
 3. Run the following command to start the Docker containers:
    ```
-   docker-compose up -d
+   docker compose up -d
    ```
 4. Once the containers are up and running, you can access the different components of the application through the following URLs:
 
