@@ -34,11 +34,11 @@ Key aspects of observability include:
    ```
 4. Once the containers are up and running, you can access the different components of the application through the following URLs:
 
-   1. The [app-api](./app) can be accessed at: http://localhost:8080
+   1. You can perform the health check for the [app-api](./app) by visiting: http://localhost:8080/app/actuator/health.
    
-   2. The [user-api](./user) is available at: http://localhost:8081
+   2. To perform the health check for the [user-api](./user), navigate to: http://localhost:8081/user/actuator/health.
    
-   3. The database connection is exposed on port 3312 (refer to the [docker compose](./docker/compose.yaml) file for details).
+   3. The database connection is exposed on port 3312 (refer to the [docker compose](./docker/compose.yaml) file for all the connection details).
    
    4. Grafana, the monitoring tool, can be accessed at: http://localhost:3000
    
