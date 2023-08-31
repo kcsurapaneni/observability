@@ -24,9 +24,12 @@ public class UserService {
     }
 
     public UserDTO getUserData(final int id) {
+        User user = userRepository.findById(id).orElseThrow();
         var appApiHealthCheckResponse = restTemplate.getForEntity("http://local-app-api:8080/app/actuator/health", String.class).getBody();
         logger.info("app api health check response - {}", appApiHealthCheckResponse);
-        User user = userRepository.findById(id).orElseThrow();
+        for (UserComment userComment : user.getUserCommentList()) {
+            logger.info("comment : {}", userComment);
+        }
         logger.info("user found from database");
         return User.to(user);
     }
