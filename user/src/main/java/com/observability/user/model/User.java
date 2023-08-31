@@ -3,6 +3,9 @@ package com.observability.user.model;
 import com.observability.user.dto.*;
 import jakarta.persistence.*;
 
+import javax.xml.stream.events.*;
+import java.util.*;
+
 /**
  * @author Krishna Chaitanya
  */
@@ -11,15 +14,27 @@ import jakarta.persistence.*;
 public class User {
 
     @Id
-    private int id;
+    private Integer id;
 
     private String name;
 
-    public int getId() {
+   @OneToMany
+   @JoinColumn(name = "user_id")
+    private List<UserComment> userCommentList;
+
+    public List<UserComment> getUserCommentList() {
+        return userCommentList;
+    }
+
+    public void setUserCommentList(List<UserComment> userCommentList) {
+        this.userCommentList = userCommentList;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
