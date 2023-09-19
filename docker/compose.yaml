@@ -82,6 +82,6 @@ services:
       - ./db/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
-      interval: 5s
+      interval: 10s
       timeout: 5s
       retries: 5
